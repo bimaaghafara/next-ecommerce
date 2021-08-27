@@ -8,6 +8,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from 'styles/theme';
 import { Provider } from 'react-redux';
 import { useStore } from 'src/redux/store';
+import Cookies from 'js-cookie';
+import Router from 'next/router';
 
 function MyApp({ Component, pageProps = {} }) {
   const store = useStore(pageProps.initialReduxState);
@@ -35,6 +37,36 @@ function MyApp({ Component, pageProps = {} }) {
         </ThemeProvider>
     </>
   );
+}
+
+MyApp.getInitialProps = async (appContext) => {
+  // calls page's `getInitialProps` and fills `appProps.pageProps`
+  const appProps = await App.getInitialProps(appContext);
+
+  const { ctx } = appContext;
+  const { pathname } = ctx;
+  if (typeof window !== 'undefined') {
+    // console.log('client');
+    const isLogin = Cookies.get('isLogin');
+    if (!isLogin && (pathname != '/login')) {
+      Router.push('/login')
+    }
+  } else {
+    // console.log('server');
+    let isLogin = ctx && ctx.req && ctx.req.cookies && ctx.req.cookies.isLogin;
+    try {
+      isLogin = JSON.parse(isLogin);
+    } catch {
+      isLogin = false;
+    }
+    if (!isLogin && (pathname != '/login')) {
+      const { res } = ctx;
+      res.writeHead(307, { Location: '/login' });
+      res.end();
+    }
+  }
+
+  return { ...appProps }
 }
 
 MyApp.propTypes = {

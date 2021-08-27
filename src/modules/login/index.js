@@ -4,7 +4,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
 import { useRouter } from 'next/router';
-
+import Cookies from 'js-cookie'
 import classNames from 'classnames';
 import useStyles from './styles';
 // import useLogin from './useLogin';
@@ -15,6 +15,7 @@ const LoginPage = () => {
     // const { isLogin, setLogin } = useLogin();
 
     const onLogin = () => {
+        Cookies.set('isLogin', JSON.stringify(true), { expires: 1 });
         router.push('/');
     }
 
