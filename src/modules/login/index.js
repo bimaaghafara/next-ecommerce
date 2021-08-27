@@ -7,10 +7,17 @@ import { useRouter } from 'next/router';
 
 import classNames from 'classnames';
 import useStyles from './styles';
+// import useLogin from './useLogin';
 
 const LoginPage = () => {
     const styles = useStyles();
     const router = useRouter();
+    // const { isLogin, setLogin } = useLogin();
+
+    const onLogin = () => {
+        router.push('/');
+    }
+
     return (
         <div className={styles.loginPage}>
             <div className={styles.loginBox}>
@@ -28,7 +35,7 @@ const LoginPage = () => {
                         control={<Checkbox color="primary" />}
                         label="Remember Me"
                     />
-                    <Button className={styles.signinButton} variant="contained" onClick={() => router.push('/')}>Sign In</Button>
+                    <Button className={styles.signinButton} variant="contained" onClick={onLogin}>Sign In</Button>
                 </div>
                 <div className={styles.socialButtonWrapper}>
                     <Button
@@ -36,7 +43,7 @@ const LoginPage = () => {
                         color="primary"
                         className={styles.socialButton}
                         startIcon={<div>f</div>}
-                        onClick={() => router.push('/')}
+                        onClick={onLogin}
                     >
                         Sign In with Facebook
                     </Button>
@@ -47,7 +54,7 @@ const LoginPage = () => {
                         color="primary"
                         className={classNames(styles.socialButton, styles.googleButton)}
                         startIcon={<div>G</div>}
-                        onClick={() => router.push('/')}
+                        onClick={onLogin}
                     >
                         Sign In with Google
                     </Button>
