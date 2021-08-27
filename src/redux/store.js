@@ -5,20 +5,21 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 let store;
 
 const initialState = {
-  isLogin: false,
+  categories: [],
+  products: [],
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'LOGIN':
+    case 'SET_CATEGORIES':
       return {
         ...state,
-        isLogin: true,
+        categories: action.payload,
       }
-    case 'LOGOUT':
+    case 'SET_PRODUCTS':
       return {
         ...state,
-        isLogin: false,
+        products: action.payload,
       }
     default:
       return state

@@ -7,12 +7,10 @@ import { useRouter } from 'next/router';
 import Cookies from 'js-cookie'
 import classNames from 'classnames';
 import useStyles from './styles';
-// import useLogin from './useLogin';
 
 const LoginPage = () => {
     const styles = useStyles();
     const router = useRouter();
-    // const { isLogin, setLogin } = useLogin();
 
     const onLogin = () => {
         Cookies.set('isLogin', JSON.stringify(true), { expires: 1 });
