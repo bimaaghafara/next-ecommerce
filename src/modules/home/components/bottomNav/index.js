@@ -12,19 +12,22 @@ const BottomNav = () => {
   const [value, setValue] = React.useState(0);
 
   return (
-    <BottomNavigation
-      value={value}
-      onChange={(event, newValue) => {
-        setValue(newValue);
-      }}
-      showLabels
-      className={styles.bottomNav}
-    >
-      <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-      <BottomNavigationAction label="Feed" icon={<ViewListIcon />} />
-      <BottomNavigationAction label="Cart" icon={<ShoppingCartIcon />} />
-      <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
-    </BottomNavigation>
+    <>
+      <div style={{ width: '100%', height: 56 }} />
+      <BottomNavigation
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        showLabels
+        className={styles.bottomNav}
+      >
+        <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+        <BottomNavigationAction label="Feed" icon={<ViewListIcon />} />
+        <BottomNavigationAction label="Cart" icon={<ShoppingCartIcon />} />
+        <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
+      </BottomNavigation>
+    </>
   );
 }
 
