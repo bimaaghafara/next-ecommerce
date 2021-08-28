@@ -5,15 +5,12 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
 import useStyles from './styles';
+import Categories from './components/categories';
 
 const HomePage = (props) => {
     const styles = useStyles();
     const router = useRouter();
-    const states = useSelector((state) => state);
-    
-    React.useEffect(() => console.log(states), []);
 
     return (
         <div className={styles.homePage}>
@@ -37,6 +34,7 @@ const HomePage = (props) => {
                     onClick={() => router.push('/search')}
                 />
             </div>
+            <Categories />
         </div>
     )
 }
