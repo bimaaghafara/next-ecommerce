@@ -6,7 +6,7 @@ import useStyles from './styles';
 
 const Categories = () => {
     const styles = useStyles();
-    const categories = useSelector((state) => state.categories);
+    const categories = useSelector((state) => state.categories || []);
     const sliderSettings = {
         infinite: true,
         speed: 500,

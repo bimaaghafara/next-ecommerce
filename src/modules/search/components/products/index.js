@@ -1,26 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
-// import Card from '@material-ui/core/Card';
-// import CardActionArea from '@material-ui/core/CardActionArea';
-// import CardContent from '@material-ui/core/CardContent';
-// import CardMedia from '@material-ui/core/CardMedia';
-// import Typography from '@material-ui/core/Typography';
-// import IconButton from '@material-ui/core/IconButton';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import useStyles from './styles';
+import { useRouter } from 'next/router';
 
 const Products = ({ products }) => {
     const styles = useStyles();
-
-    const onClickWishlist = (e, product) => {
-        e.stopPropagation();
-        console.log('wishlist', product);
-    }
+    const router = useRouter();
 
     return (
         <List className={styles.products}>
@@ -29,7 +19,10 @@ const Products = ({ products }) => {
                     key={i}
                     className={styles.product}
                     button
-                    onClick={(e) => console.log(product)}
+                    onClick={() => router.push({
+                        pathname: '/product',
+                        query: { data: JSON.stringify(product) },
+                    })}
                 >
                     <ListItemAvatar>
                         <Avatar variant="square" className={styles.productAvatar}>

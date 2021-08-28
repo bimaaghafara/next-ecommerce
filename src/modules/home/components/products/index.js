@@ -9,10 +9,12 @@ import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useSelector } from 'react-redux';
 import useStyles from './styles';
+import { useRouter } from 'next/router';
 
 const Products = () => {
     const styles = useStyles();
-    const products = useSelector((state) => state.products);
+    const products = useSelector((state) => state.products || []);
+    const router = useRouter();
 
     const onClickWishlist = (e, product) => {
         e.stopPropagation();
@@ -23,7 +25,10 @@ const Products = () => {
         <div className={styles.products}>
             {products.map((product, i) => (
                 <div key={i} className={styles.product}>
-                    <Card onClick={() => console.log(product)}>
+                    <Card onClick={() => router.push({
+                        pathname: '/product',
+                        query: { data: JSON.stringify(product) },
+                    })}>
                         <CardActionArea>
                             <CardMedia
                                 className={styles.productImage}

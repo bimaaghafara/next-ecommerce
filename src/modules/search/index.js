@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import useStyles from './styles';
+import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -34,10 +35,9 @@ const SearchPage = () => {
     return (
         <div className={styles.searchPage}>
             <div>
-                <ArrowBackIcon
-                    className={styles.backIcon}
-                    onClick={() => router.push('/')}
-                />
+                <IconButton className={styles.backIcon} onClick={router.back}>
+                    <ArrowBackIcon />
+                </IconButton>
                 <TextField
                     inputRef={searchTextFieldRef}
                     className={styles.searchTextField}

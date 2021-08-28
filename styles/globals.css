@@ -12,6 +12,7 @@ body {
   min-height: 100vh;
   border-left: 1px solid #fafafa;
   border-right: 1px solid #fafafa;
+  box-shadow: 6px 0 4px -4px #999, -6px 0 4px -4px #999; 
 }
 
 a {
