@@ -18,6 +18,7 @@ const ProductPage = () => {
     const router = useRouter();
     const dispatch = useDispatch();
     const data = router && router.query && router.query.data;
+    const [alertMessage, setAlertMessage] = useState('');
     const [showAlert, setShowAlert] = useState(false);
 
     let product;
@@ -29,13 +30,18 @@ const ProductPage = () => {
 
     const handleBuy = () => {
         dispatch({ type: 'ADD_TO_CART', payload: product });
+        setAlertMessage('Success add to cart!');
+        setShowAlert(true);
     }
 
     return (
         <div className={styles.productPage}>
-            <Snackbar open={showAlert} autoHideDuration={2500} onClose={() => setShowAlert(false)}>
+            <Snackbar
+                open={showAlert} autoHideDuration={2500}
+                onClose={() => setShowAlert(false)}
+            >
                 <MuiAlert elevation={6} variant="filled" onClose={() => setShowAlert(false)} severity="success">
-                    Successfully shared!
+                    {alertMessage}
                 </MuiAlert>
             </Snackbar>
             <div
@@ -45,7 +51,10 @@ const ProductPage = () => {
                 <IconButton className={styles.backIcon} onClick={router.back}>
                     <ArrowBackIcon />
                 </IconButton>
-                <IconButton className={styles.shareIcon} onClick={() => setShowAlert(true)}>
+                <IconButton className={styles.shareIcon} onClick={() => {
+                    setAlertMessage('Success share!');
+                    setShowAlert(true);
+                }}>
                     <ShareIcon />
                 </IconButton>
             </div>
