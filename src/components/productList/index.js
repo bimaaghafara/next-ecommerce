@@ -8,12 +8,12 @@ import Avatar from '@material-ui/core/Avatar';
 import useStyles from './styles';
 import { useRouter } from 'next/router';
 
-const Products = ({ products }) => {
+const ProductList = ({ products }) => {
     const styles = useStyles();
     const router = useRouter();
 
     return (
-        <List className={styles.products}>
+        <List>
             {products.map((product, i) => (
                 <ListItem
                     key={i}
@@ -42,4 +42,4 @@ const Products = ({ products }) => {
     );
 };
 
-export default Products;
+export default ProductList;

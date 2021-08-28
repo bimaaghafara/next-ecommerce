@@ -1,5 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import useStyles from './styles';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import ProductNotFound from './components/productNotFound';
 import IconButton from '@material-ui/core/IconButton';
@@ -8,11 +10,16 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ShareIcon from '@material-ui/icons/Share';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 const ProductPage = () => {
     const styles = useStyles();
     const router = useRouter();
+    const dispatch = useDispatch();
     const data = router && router.query && router.query.data;
+    const [showAlert, setShowAlert] = useState(false);
+
     let product;
     try {
         product = JSON.parse(data);
@@ -20,8 +27,17 @@ const ProductPage = () => {
         return <ProductNotFound />
     }
 
+    const handleBuy = () => {
+        dispatch({ type: 'ADD_TO_CART', payload: product });
+    }
+
     return (
         <div className={styles.productPage}>
+            <Snackbar open={showAlert} autoHideDuration={2500} onClose={() => setShowAlert(false)}>
+                <MuiAlert elevation={6} variant="filled" onClose={() => setShowAlert(false)} severity="success">
+                    Successfully shared!
+                </MuiAlert>
+            </Snackbar>
             <div
                 className={styles.productImage}
                 style={{ backgroundImage: `url('${product.imageUrl}')` }}
@@ -29,9 +45,7 @@ const ProductPage = () => {
                 <IconButton className={styles.backIcon} onClick={router.back}>
                     <ArrowBackIcon />
                 </IconButton>
-                <IconButton className={styles.shareIcon} onClick={() => {
-                    window.alert('Successfully shared!');
-                }}>
+                <IconButton className={styles.shareIcon} onClick={() => setShowAlert(true)}>
                     <ShareIcon />
                 </IconButton>
             </div>
@@ -50,7 +64,12 @@ const ProductPage = () => {
             </div>
             <div style={{ width: '100%', height: 56 }} />
             <div className={styles.stickyBottom}>
-                <Button className={styles.buyButton} variant="contained" color="primary">
+                <Button
+                    className={styles.buyButton}
+                    variant="contained"
+                    color="primary"
+                    onClick={handleBuy}
+                >
                     Buy
                 </Button>
                 <Typography className={styles.productPrice} variant="h5">

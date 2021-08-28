@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import { useRouter } from 'next/router';
-import Products from './components/products';
+import ProductList from 'src/components/productList';
 
 const SearchPage = () => {
     const styles = useStyles();
@@ -54,7 +54,7 @@ const SearchPage = () => {
                 />
             </div>
             <div>
-                <Products
+                <ProductList
                     products={
                         products.filter(product => {
                             const title = product.title.toLowerCase();
