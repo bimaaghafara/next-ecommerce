@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -19,6 +20,10 @@ const LoginPage = () => {
 
     return (
         <div className={styles.loginPage}>
+            <Head>
+                <title>Login</title>
+                <meta name="description" content="Login Page" />
+            </Head>
             <div className={styles.loginBox}>
                 <Typography className={styles.loginTitle} variant="h5" gutterBottom align="center">
                     Login

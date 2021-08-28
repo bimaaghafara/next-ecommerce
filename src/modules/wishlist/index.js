@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './styles';
 import { useSelector } from 'react-redux';
@@ -13,6 +14,10 @@ const WishlistPage = () => {
 
     return (
         <div className={styles.wishlistPage}>
+            <Head>
+                <title>Wishlist</title>
+                <meta name="description" content="Wishlist Page" />
+            </Head>
             <div>
                 <IconButton className={styles.backIcon} onClick={router.back}>
                     <ArrowBackIcon />

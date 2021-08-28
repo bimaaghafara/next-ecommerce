@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './styles';
 import { useSelector } from 'react-redux';
@@ -13,6 +14,10 @@ const PurchaseHistoryPage = () => {
 
     return (
         <div className={styles.purchaseHistoryPage}>
+            <Head>
+                <title>Purchase History</title>
+                <meta name="description" content="Purchase History Page" />
+            </Head>
             <div>
                 <IconButton className={styles.backIcon} onClick={router.back}>
                     <ArrowBackIcon />

@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import Head from 'next/head';
 import useStyles from './styles';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -31,6 +32,10 @@ const ProductContent = ({ product }) => {
 
     return (
         <div className={styles.productPage}>
+            <Head>
+                <title>Product</title>
+                <meta name="description" content="Product Page" />
+            </Head>
             <Snackbar
                 open={showAlert} autoHideDuration={2500}
                 onClose={() => setShowAlert(false)}
