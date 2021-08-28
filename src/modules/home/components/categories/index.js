@@ -8,11 +8,13 @@ const Categories = () => {
     const styles = useStyles();
     const categories = useSelector((state) => state.categories);
     const sliderSettings = {
-        dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 4
+        autoplaySpeed: 2000,
+        autoplay: true,
+        centerMode: true,
+        slidesToShow: 3,
+        slidesToScroll: 3
     };
 
     return (

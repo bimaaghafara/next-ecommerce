@@ -7,6 +7,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { useRouter } from 'next/router';
 import useStyles from './styles';
 import Categories from './components/categories';
+import Products from './components/producs';
 
 const HomePage = (props) => {
     const styles = useStyles();
@@ -35,6 +36,7 @@ const HomePage = (props) => {
                 />
             </div>
             <Categories />
+            <Products />
         </div>
     )
 }
