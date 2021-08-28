@@ -7,7 +7,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { useRouter } from 'next/router';
 import useStyles from './styles';
 import Categories from './components/categories';
-import Products from './components/producs';
+import Products from './components/products';
 import BottomNav from './components/bottomNav';
 
 const HomePage = (props) => {

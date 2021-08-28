@@ -2,11 +2,10 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
-    homePage : {
-        padding: '12px',
-        paddingBottom: 0
+    searchPage : {
+        padding: '12px'
     },
-    favoriteIcon: {
+    backIcon: {
         fontSize: '40px !important',
         paddingRight: 8,
     },
