@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import useStyles from './styles';
 import Categories from './components/categories';
 import Products from './components/producs';
+import BottomNav from './components/bottomNav';
 
 const HomePage = (props) => {
     const styles = useStyles();
@@ -37,6 +38,7 @@ const HomePage = (props) => {
             </div>
             <Categories />
             <Products />
+            <BottomNav />
         </div>
     )
 }

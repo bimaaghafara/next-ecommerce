@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
     homePage : {
-        padding: "12px"
+        padding: '12px',
+        paddingBottom: 0
     },
     favoriteIcon: {
         fontSize: 40,

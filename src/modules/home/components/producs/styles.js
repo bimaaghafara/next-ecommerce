@@ -2,8 +2,12 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
-    products : {
-        marginTop: 24,
+    products: {
+        margin: '24px 0',
+    },
+    product: {
+        position: 'relative',
+        marginTop: 18
     },
     productImage: {
         paddingBottom: '40%',
@@ -13,7 +17,9 @@ const useStyles = makeStyles(() => ({
         padding: 12
     },
     wishlistIcon: {
-        float: 'right'
+        bottom: 0,
+        right: 0,
+        position: 'absolute'
     }
 }));
 

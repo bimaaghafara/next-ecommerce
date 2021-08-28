@@ -22,8 +22,8 @@ const Products = () => {
     return (
         <div className={styles.products}>
             {products.map((product, i) => (
-                <div key={i}>
-                    <Card className={styles.products} onClick={() => console.log(product)}>
+                <div key={i} className={styles.product}>
+                    <Card onClick={() => console.log(product)}>
                         <CardActionArea>
                             <CardMedia
                                 className={styles.productImage}
@@ -31,13 +31,6 @@ const Products = () => {
                                 title={product.title}
                             />
                             <CardContent>
-                                <IconButton
-                                    className={styles.wishlistIcon}
-                                    aria-label="add to favorites"
-                                    onClick={(e) => onClickWishlist(e, product)}
-                                >
-                                    <FavoriteIcon />
-                                </IconButton>
                                 <Typography gutterBottom variant="h5" component="h2">
                                     {product.title}
                                 </Typography>
@@ -47,6 +40,13 @@ const Products = () => {
                             </CardContent>
                         </CardActionArea>
                     </Card>
+                    <IconButton
+                        className={styles.wishlistIcon}
+                        aria-label="add to favorites"
+                        onClick={(e) => onClickWishlist(e, product)}
+                    >
+                        <FavoriteIcon />
+                    </IconButton>
                 </div>
             ))}
       </div>

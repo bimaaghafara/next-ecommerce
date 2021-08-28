@@ -12,9 +12,9 @@ const Categories = () => {
         speed: 500,
         autoplaySpeed: 2000,
         autoplay: true,
-        centerMode: true,
-        slidesToShow: 3,
-        slidesToScroll: 3
+        slidesToShow: 4,
+        slidesToScroll: 3,
+        arrows: false,
     };
 
     return (
