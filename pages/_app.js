@@ -10,9 +10,19 @@ import { Provider } from 'react-redux';
 import { useStore } from 'src/redux/store';
 import Cookies from 'js-cookie';
 import Router from 'next/router';
+import LinearProgress from 'src/components/linearProgress';
 
 function MyApp({ Component, pageProps = {} }) {
   const store = useStore(pageProps.initialReduxState);
+  const [showLinearProgress, setShowLinearProgress] = React.useState(false);
+
+  Router.onRouteChangeStart = () => {
+    setShowLinearProgress(true)
+  };
+  
+  Router.onRouteChangeComplete = () => {
+    setShowLinearProgress(false)
+  };
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -32,6 +42,7 @@ function MyApp({ Component, pageProps = {} }) {
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <Provider store={store}>
+          {showLinearProgress && <LinearProgress />}
           <Component {...pageProps} />
         </Provider>
         </ThemeProvider>
