@@ -7,6 +7,7 @@ let store;
 const initialState = {
   categories: [],
   products: [],
+  productsCart: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -20,6 +21,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         products: action.payload,
+      }
+    case 'ADD_TO_CART':
+      return {
+        ...state,
+        productsCart: [
+          ...(state.productsCart || []),
+          action.payload
+        ],
       }
     default:
       return state

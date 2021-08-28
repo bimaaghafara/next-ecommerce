@@ -35,6 +35,7 @@ const useStyles = makeStyles(() => ({
     },
     stickyBottom: {
         height: 56,
+        width: '100%',
         maxWidth: 480,
         position: 'fixed',
         bottom: 0,
