@@ -8,27 +8,46 @@ const initialState = {
   categories: [],
   products: [],
   productsCart: [],
+  productsWishlist: []
 }
 
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case 'SET_CATEGORIES':
       return {
         ...state,
-        categories: action.payload,
+        categories: payload,
       }
     case 'SET_PRODUCTS':
       return {
         ...state,
-        products: action.payload,
+        products: payload,
       }
     case 'ADD_TO_CART':
       return {
         ...state,
         productsCart: [
           ...(state.productsCart || []),
-          action.payload
+          payload
         ],
+      }
+    case 'ADD_TO_WISHLIST':
+      const tmpProductsWishlist = [...(state.productsWishlist || []), payload];
+      // uniq product wishlist by id
+      const productsWishlist = tmpProductsWishlist.filter((product, i) => (
+        tmpProductsWishlist.findIndex(e => e.id == product.id) == i
+      ))
+      return {
+        ...state,
+        productsWishlist
+      }
+    case 'REMOVE_FROM_WISHLIST':
+      return {
+        ...state,
+        productsWishlist: (state.productsWishlist || []).filter(product => (
+          product.id != payload.id
+        )),
       }
     default:
       return state

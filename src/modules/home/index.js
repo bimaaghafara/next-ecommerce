@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import TextField from '@material-ui/core/TextField';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 import { useRouter } from 'next/router';
@@ -22,7 +23,10 @@ const HomePage = (props) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div>
-                <FavoriteIcon className={styles.favoriteIcon}/>
+                {/* <FavoriteIcon className={styles.favoriteIcon}/> */}
+                <IconButton onClick={() => router.push('/wishlist')}>
+                    <FavoriteIcon className={styles.favoriteIcon}  />
+                </IconButton>
                 <TextField
                     className={styles.searchTextField}
                     id="search-input"

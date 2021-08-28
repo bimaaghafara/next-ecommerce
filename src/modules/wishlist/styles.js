@@ -2,20 +2,19 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
-    searchPage : {
+    wishlistPage : {
         padding: '12px'
+    },
+    pageTitle: {
+        display: 'inline-block',
+        lineHeight: '48px',
+        verticalAlign: 'middle',
+        padding: 4
     },
     backIcon: {
         fontSize: '40px !important',
         paddingRight: 8,
     },
-    searchTextField : {
-        padding: 4,
-        width: 'calc(100% - 48px)',
-        '& input + fieldset': {
-            borderRadius: 99,
-        },
-    }
 }));
 
 export default useStyles;

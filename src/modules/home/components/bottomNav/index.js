@@ -31,7 +31,11 @@ const BottomNav = () => {
           icon={<ShoppingCartIcon />}
           onClick={() => router.push('/purchaseHistory')}
         />
-        <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
+        <BottomNavigationAction
+          label="Profile"
+          icon={<PersonIcon />}
+          onClick={() => router.push('/wishlist')}
+        />
       </BottomNavigation>
     </>
   );

@@ -7,11 +7,11 @@ const useStyles = makeStyles(() => ({
         paddingBottom: 0
     },
     favoriteIcon: {
-        fontSize: '40px !important',
-        paddingRight: 8,
+        fontSize: '27px !important',
     },
     searchTextField : {
-        width: 'calc(100% - 48px)',
+        padding: 4,
+        width: 'calc(100% - 51px)',
         '& input + fieldset': {
             borderRadius: 99,
         },

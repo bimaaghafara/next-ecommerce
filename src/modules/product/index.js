@@ -1,32 +1,27 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import useStyles from './styles';
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import ProductNotFound from './components/productNotFound';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ShareIcon from '@material-ui/icons/Share';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import { useWishlist } from 'src/modules/wishlist/useWishlist';
 
-const ProductPage = () => {
+const ProductContent = ({ product }) => {
     const styles = useStyles();
     const router = useRouter();
     const dispatch = useDispatch();
-    const data = router && router.query && router.query.data;
+    const { isWishlist, handleAddToWishlist } = useWishlist(product);
     const [alertMessage, setAlertMessage] = useState('');
     const [showAlert, setShowAlert] = useState(false);
-
-    let product;
-    try {
-        product = JSON.parse(data);
-    } catch {
-        return <ProductNotFound />
-    }
 
     const handleBuy = () => {
         dispatch({ type: 'ADD_TO_CART', payload: product });
@@ -62,8 +57,8 @@ const ProductPage = () => {
                 <Typography className={styles.productName} variant="h5">
                     {product.title}
                 </Typography>
-                <IconButton className={styles.wishlistButton} onClick={router.back}>
-                    <FavoriteIcon />
+                <IconButton className={styles.wishlistButton} onClick={handleAddToWishlist}>
+                    {isWishlist() ? <FavoriteIcon /> : <FavoriteBorderIcon/>}
                 </IconButton>
             </div>
             <div>
@@ -78,6 +73,7 @@ const ProductPage = () => {
                     variant="contained"
                     color="primary"
                     onClick={handleBuy}
+                    disabled={showAlert && alertMessage && alertMessage.includes('cart')}
                 >
                     Buy
                 </Button>
@@ -86,7 +82,19 @@ const ProductPage = () => {
                 </Typography>
             </div>
         </div>
-    );
+    )
+}
+
+const ProductPage = () => {
+    const router = useRouter();
+    const data = router && router.query && router.query.data;
+    let product;
+    try {
+        product = JSON.parse(data);
+        return <ProductContent product={product} />
+    } catch {
+        return <ProductNotFound />
+    }
 };
 
 export default ProductPage;
