@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import Cookies from 'js-cookie'
 import classNames from 'classnames';
 import useStyles from './styles';
-import { signInWithGoogle } from "src/services/firebase";
+import { signInWithGoogle, signInWithFacebook } from "src/services/firebase";
 
 const LoginPage = () => {
     const styles = useStyles();
@@ -30,6 +30,19 @@ const LoginPage = () => {
             router.push('/');
         }
     });
+
+    const handleSignInWithFacebook = () => signInWithFacebook({
+        onSuccess: (res) => {
+            console.log(res)
+            // const user = {
+            //     email: res.user.email,
+            //     name: res.user.displayName
+            // };
+            // Cookies.set('isLogin', JSON.stringify(true), { expires: 1 });
+            // Cookies.set('user', JSON.stringify(user), { expires: 1 });
+            // router.push('/');
+        }
+    }); 
 
     return (
         <div className={styles.loginPage}>
@@ -60,7 +73,7 @@ const LoginPage = () => {
                         color="primary"
                         className={styles.socialButton}
                         startIcon={<div>f</div>}
-                        onClick={onLogin}
+                        onClick={handleSignInWithFacebook}
                     >
                         Sign In with Facebook
                     </Button>
