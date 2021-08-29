@@ -1,34 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Nextjs Ecommerce Website
+An web app with basic feature login, login with facebook, login with google, categories & products, cart, wishlist. Some of features are using dummy data and temporary saved in redux state (state will be reinitialized when reload or ssr redirect).
 
-## Getting Started
+## Live Demo
+[https://next-ecommerce-bimaa.vercel.app/](https://next-ecommerce-bimaa.vercel.app/)
 
-First, run the development server:
+## Installing Locally
+```
+npm install
+# or
+yarn install
+```
 
+## Run Locally
 ```bash
 npm run dev
 # or
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Built With
+JS Frameworks
+* [React.js](https://reactjs.org/) - A JavaScript library for building user interfaces.
+* [Next.js](https://nextjs.org//) - A React Framework which gives you the best developer experience with all the features you need for production: hybrid static & server rendering, TypeScript support, smart bundling, route pre-fetching, and more. No config needed.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+User Interface
+* [Material UI](https://material-ui.com/) - React components for faster and easier web development.
+* [Notistack](https://iamhosseindhv.com/notistack) - Snackbar (Material UI Component) library which makes it extremely easy to display notifications on your web apps
+* [React Slick](https://react-slick.neostack.com/) - The Last React Carousel You'll Ever Need!
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+State Management
+* [Redux](https://redux.js.org/) - A Predictable State Container for JS Apps
+* [React-Redux](https://react-redux.js.org/) - Official React bindings for Redux
+* [Js Cookie](https://github.com/js-cookie/js-cookie) - A simple, lightweight JavaScript API for handling cookies
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Authentication
+* [Firebase](https://firebase.google.com/) - Backed by Google - helps you build
+and run successful apps
+* [Firebase Facebook Login](https://firebase.google.com/docs/auth/web/facebook-login) - Authenticate Using Facebook Login with JavaScript
+* [Firebase Google Signin](https://firebase.google.com/docs/auth/web/google-signin) - Authenticate Using Google Signin with JavaScript
