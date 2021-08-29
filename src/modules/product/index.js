@@ -1,7 +1,7 @@
+/* eslint-disable react/display-name */
 /* eslint-disable react-hooks/exhaustive-deps */
 import Head from 'next/head';
 import useStyles from './styles';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import ProductNotFound from './components/productNotFound';
@@ -12,22 +12,30 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ShareIcon from '@material-ui/icons/Share';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
 import { useWishlist } from 'src/modules/wishlist/useWishlist';
+import { useSnackbar } from 'notistack';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 const ProductContent = ({ product }) => {
     const styles = useStyles();
     const router = useRouter();
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const dispatch = useDispatch();
     const { isWishlist, handleAddToWishlist } = useWishlist(product);
-    const [alertMessage, setAlertMessage] = useState('');
-    const [showAlert, setShowAlert] = useState(false);
 
+    const showSuccessAlert = (message) => {
+        enqueueSnackbar(message, {
+            variant: 'success',
+            action: (key) => (
+                <IconButton style={{ color: '#fff'}} onClick={() => closeSnackbar(key)}>
+                    <CancelIcon  />
+                </IconButton>
+            ),
+        })
+    }
     const handleBuy = () => {
         dispatch({ type: 'ADD_TO_CART', payload: product });
-        setAlertMessage('Success add to cart!');
-        setShowAlert(true);
+        showSuccessAlert('Success add to cart!');
     }
 
     return (
@@ -36,14 +44,6 @@ const ProductContent = ({ product }) => {
                 <title>Product</title>
                 <meta name="description" content="Product Page" />
             </Head>
-            <Snackbar
-                open={showAlert} autoHideDuration={2500}
-                onClose={() => setShowAlert(false)}
-            >
-                <MuiAlert elevation={6} variant="filled" onClose={() => setShowAlert(false)} severity="success">
-                    {alertMessage}
-                </MuiAlert>
-            </Snackbar>
             <div
                 className={styles.productImage}
                 style={{ backgroundImage: `url('${product.imageUrl}')` }}
@@ -52,8 +52,7 @@ const ProductContent = ({ product }) => {
                     <ArrowBackIcon />
                 </IconButton>
                 <IconButton className={styles.shareIcon} onClick={() => {
-                    setAlertMessage('Success share!');
-                    setShowAlert(true);
+                    showSuccessAlert('Success share!');
                 }}>
                     <ShareIcon />
                 </IconButton>
@@ -78,7 +77,6 @@ const ProductContent = ({ product }) => {
                     variant="contained"
                     color="primary"
                     onClick={handleBuy}
-                    disabled={showAlert && alertMessage && alertMessage.includes('cart')}
                 >
                     Buy
                 </Button>
