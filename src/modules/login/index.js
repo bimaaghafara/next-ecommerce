@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import Cookies from 'js-cookie'
 import classNames from 'classnames';
 import useStyles from './styles';
+import { signInWithGoogle } from "src/services/firebase";
 
 const LoginPage = () => {
     const styles = useStyles();
@@ -17,6 +18,18 @@ const LoginPage = () => {
         Cookies.set('isLogin', JSON.stringify(true), { expires: 1 });
         router.push('/');
     }
+
+    const handleSignInWithGoogle = () => signInWithGoogle({
+        onSuccess: (res) => {
+            const user = {
+                email: res.user.email,
+                name: res.user.displayName
+            };
+            Cookies.set('isLogin', JSON.stringify(true), { expires: 1 });
+            Cookies.set('user', JSON.stringify(user), { expires: 1 });
+            router.push('/');
+        }
+    });
 
     return (
         <div className={styles.loginPage}>
@@ -58,7 +71,7 @@ const LoginPage = () => {
                         color="primary"
                         className={classNames(styles.socialButton, styles.googleButton)}
                         startIcon={<div>G</div>}
-                        onClick={onLogin}
+                        onClick={handleSignInWithGoogle}
                     >
                         Sign In with Google
                     </Button>
