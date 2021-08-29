@@ -8,7 +8,8 @@ const useStyles = makeStyles(() => ({
     pageTitle: {
         display: 'inline-block',
         lineHeight: '48px',
-        verticalAlign: 'middle'
+        verticalAlign: 'middle',
+        padding: 4
     },
     backIcon: {
         fontSize: '40px !important',

@@ -26,12 +26,12 @@ const useStyles = makeStyles(() => ({
     productName: {
         width: 'calc(100% - 48px)',
         display: 'inline-block',
-        marginBottom: 12
+        marginBottom: '12px !important',
     },
     wishlistButton: {
         display: 'inline-block',
         float: 'right',
-        paddingTop: 0
+        marginTop: '-12px !important',
     },
     stickyBottom: {
         height: 56,

@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import Head from 'next/head';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import useStyles from './styles';
@@ -34,6 +35,10 @@ const SearchPage = () => {
 
     return (
         <div className={styles.searchPage}>
+            <Head>
+                <title>Search</title>
+                <meta name="description" content="Search Page" />
+            </Head>
             <div>
                 <IconButton className={styles.backIcon} onClick={router.back}>
                     <ArrowBackIcon />
