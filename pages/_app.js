@@ -11,6 +11,7 @@ import { useStore } from 'src/redux/store';
 import Cookies from 'js-cookie';
 import Router from 'next/router';
 import LinearProgress from 'src/components/linearProgress';
+import { SnackbarProvider } from 'notistack';
 
 function MyApp({ Component, pageProps = {} }) {
   const store = useStore(pageProps.initialReduxState);
@@ -43,7 +44,9 @@ function MyApp({ Component, pageProps = {} }) {
         <CssBaseline />
         <Provider store={store}>
           {showLinearProgress && <LinearProgress />}
-          <Component {...pageProps} />
+          <SnackbarProvider>
+            <Component {...pageProps} />
+          </SnackbarProvider>
         </Provider>
         </ThemeProvider>
     </>
