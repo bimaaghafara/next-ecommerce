@@ -41,7 +41,7 @@ const ProductContent = ({ product }) => {
     return (
         <div className={styles.productPage}>
             <Head>
-                <title>Product - Jual {product.title} Terbaik - Harga Murah!</title>
+                <title>Product - Jual {product.title} Terbaik - Harga Murah</title>
                 <meta name="description" content="Product Page" />
             </Head>
             <div
