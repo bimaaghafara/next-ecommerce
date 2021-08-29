@@ -17,47 +17,30 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// google sign in
-const googleProvider = new GoogleAuthProvider();
-const auth = getAuth();
-export const signInWithGoogle = ({ onSuccess, onError= () => {}}) => {
-    signInWithPopup(auth, googleProvider).then((result) => {
-        // // This gives you a Google Access Token. You can use it to access the Google API.
+// social sign in
+export const socialSignin = ({ type, onSuccess, onError= () => {}}) => {
+    let provider;
+    if (type == 'google') {
+        provider = new GoogleAuthProvider();
+    } else if (type == 'facebook') {
+        provider = new FacebookAuthProvider();
+    } else {
+        return;
+    }
+
+    const auth = getAuth();
+    signInWithPopup(auth, provider).then((result) => {
+        // // For Access Token. You can use it to access the 3rd Social API.
         // const credential = GoogleAuthProvider.credentialFromResult(result);
+        // const credential = FacebookAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
-        // // The signed-in user info.
-        // const user = result.user;
         onSuccess(result);
     }).catch((error) => {
         // const errorCode = error.code;
         // const errorMessage = error.message;
-        // // The email of the user's account used.
         // const email = error.email;
-        // // The AuthCredential type that was used.
         // const credential = GoogleAuthProvider.credentialFromError(error);
-        // console.error(error);
-        onError(error);
-    })
-}
-
-const facebookProvider = new FacebookAuthProvider();
-export const signInWithFacebook = ({ onSuccess, onError= () => {}}) => {
-    signInWithPopup(auth, facebookProvider).then((result) => {
-        // // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         // const credential = FacebookAuthProvider.credentialFromResult(result);
-        // const accessToken = credential.accessToken;
-        // // The signed-in user info.
-        // const user = result.user;
-        onSuccess(result);
-    })
-    .catch((error) => {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // // The email of the user's account used.
-        // const email = error.email;
-        // // The AuthCredential type that was used.
-        // const credential = FacebookAuthProvider.credentialFromError(error);
-        // console.error(error);
         onError(error);
-    });
+    })
 }

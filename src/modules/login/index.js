@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import Cookies from 'js-cookie'
 import classNames from 'classnames';
 import useStyles from './styles';
-import { signInWithGoogle, signInWithFacebook } from "src/services/firebase";
+import { socialSignin } from "src/services/firebase";
 
 const LoginPage = () => {
     const styles = useStyles();
@@ -19,7 +19,8 @@ const LoginPage = () => {
         router.push('/');
     }
 
-    const handleSignInWithGoogle = () => signInWithGoogle({
+    const handleSocialSignin = (type) => socialSignin({
+        type,
         onSuccess: (res) => {
             const user = {
                 email: res.user.email,
@@ -30,19 +31,6 @@ const LoginPage = () => {
             router.push('/');
         }
     });
-
-    const handleSignInWithFacebook = () => signInWithFacebook({
-        onSuccess: (res) => {
-            console.log(res)
-            // const user = {
-            //     email: res.user.email,
-            //     name: res.user.displayName
-            // };
-            // Cookies.set('isLogin', JSON.stringify(true), { expires: 1 });
-            // Cookies.set('user', JSON.stringify(user), { expires: 1 });
-            // router.push('/');
-        }
-    }); 
 
     return (
         <div className={styles.loginPage}>
@@ -73,7 +61,7 @@ const LoginPage = () => {
                         color="primary"
                         className={styles.socialButton}
                         startIcon={<div>f</div>}
-                        onClick={handleSignInWithFacebook}
+                        onClick={() => handleSocialSignin('facebook')}
                     >
                         Sign In with Facebook
                     </Button>
@@ -84,7 +72,7 @@ const LoginPage = () => {
                         color="primary"
                         className={classNames(styles.socialButton, styles.googleButton)}
                         startIcon={<div>G</div>}
-                        onClick={handleSignInWithGoogle}
+                        onClick={() => handleSocialSignin('google')}
                     >
                         Sign In with Google
                     </Button>
